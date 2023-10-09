@@ -4,29 +4,25 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.laba2.databinding.ListFragmentBinding
-import java.text.FieldPosition
+import com.example.laba2.databinding.CustomListItemBinding
 
 
 class ListAdapter(context: Context, private val arrayList: ArrayList<ItemModel>) :
+    //arrayadapter - базовый класс
     ArrayAdapter<ItemModel>(context, R.layout.custom_list_item, arrayList) {
 
+    private lateinit var binding : CustomListItemBinding
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater = LayoutInflater.from(parent.context)
-        val view : View = inflater.inflate(R.layout.custom_list_item, parent, false)
+        binding = CustomListItemBinding.inflate(inflater, parent, false)
 
-        val imageView : ImageView = view.findViewById(R.id.imageview)
-        val countryName : TextView = view.findViewById(R.id.textView1)
-        val cityName : TextView = view.findViewById(R.id.textView2)
+        binding.imageview.setImageResource(arrayList[position].imageId)
+        binding.textView1.text = arrayList[position].name
+        binding.textView2.text = arrayList[position].city
 
-        imageView.setImageResource(arrayList[position].imageId)
-        countryName.text = arrayList[position].name
-        cityName.text = arrayList[position].city
-
-        return view
+        return binding.root
     }
 }

@@ -30,15 +30,13 @@ class ListFragment : Fragment(R.layout.list_fragment) {
             itemArrayList.add(item)
         }
 
-
         _binding = ListFragmentBinding.inflate(inflater, container, false)
         binding.listview.adapter = ListAdapter(requireContext(), itemArrayList)
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        listview.onItemClickListener = AdapterView.OnItemClickListener { parent, v, position, id ->
+        listview.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             val selectedItem = itemArrayList[position]
             Toast.makeText(requireContext(), selectedItem.name, Toast.LENGTH_SHORT).show()
         }
