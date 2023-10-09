@@ -37,8 +37,7 @@ class ListFragment : Fragment(R.layout.list_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         listview.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            val selectedItem = itemArrayList[position]
-            Toast.makeText(requireContext(), selectedItem.name, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), itemArrayList[position].name, Toast.LENGTH_SHORT).show()
         }
     }
 }
